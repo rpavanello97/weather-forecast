@@ -3,7 +3,6 @@ import { FormControl, Validators } from '@angular/forms';
 
 import { select, Store } from '@ngrx/store';
 
-import { HomeState } from './state/home.reducer';
 import * as fromHomeActions from './state/home.actions';
 import * as fromHomeSelectors from './state/home.selectors'
 
