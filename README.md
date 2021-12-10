@@ -29,29 +29,29 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## To do
 create actions home.actions.ts
-    loadCurrentWeather
+<!--loadCurrentWeather
         when search btn is clicked
         props -> query: string
-	loadCurrentWeatherSuccess
+    loadCurrentWeatherSuccess
         feature -> Weather API Load Current Weather Success
         props -> ent: any
-	loadCurrentWeatherFailed
+    loadCurrentWeatherFailed
         feature -> Weather API Load Current Weather Failed
-        props -> ent: any
+        props -> ent: any   -->
 
 home.reducer.ts
-    inside HomeState interface
+<!-- inside HomeState interface
         entity: any
         loading: boolean
-        error: boolean 
+        error: boolean
     inside reducer
         change the initial state
         put the loadCurrentWeather with 'on' and change the loading value to true and error value to false
         put the loadCurrentWeatherSuccess with 'on' and change the loading value to false and get the entity
-        put the loadCurrentWeatherFailed with 'on' and change the loading value to false the error to true
+        put the loadCurrentWeatherFailed with 'on' and change the loading value to false the error to true -->
 
 home.effects.ts
-    create loadCurrentWeather$ effect with createEffect(). it will received a 'query' check the code in video
+    <!-- create loadCurrentWeather$ effect with createEffect(). it will received a 'query' check the code in video -->
 
 ng g s shared/services/weather --skipTest true
     import HttpClient in constructor and Http ClientModule in app.module
