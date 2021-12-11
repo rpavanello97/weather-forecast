@@ -2,7 +2,7 @@
     <div class="search-container">
 
         <div class="form-group">            
-            <label> {{ text }} </label>
+            <label> Type the city </label>
             <div>
                 <input class="form-control" [formControl]="searchControl">
                 <button class="btn btn-dark" [disabled]="!searchControl.valid" (click)="doSearch()">Search</button>
@@ -11,6 +11,18 @@
 
         <div class="form-group">
             <label>Search with <i>autocomplete</i></label>
-        </div>
+        </div>        
     </div>
+
+    
+    <dio-loader *ngIf="loading$ | async"></dio-loader>
+
+    <div *ngIf="!(loading$ | async) && !(error$ | async)">
+        {{ (cityWeather$ | async)?.city?.name }}
+    </div>
+
+    <div *ngIf="!(loading$ | async) && (error$ | async)">
+        <a>Try again</a>
+    </div>
+    
 </div>

@@ -2,12 +2,12 @@ import { createAction, props } from "@ngrx/store";
 
 export const loadCurrentWeather = createAction(
     '[Weather API] Load Current Weather',
-    props<{query: string}>()
+    props<{ query: string }>()
 );
 
 export const loadCurrentWeatherSuccess = createAction(
     '[Weather API] Load Current Weather Success',
-    props<{entity:any}>()
+    props<{ entity: any }>()
 );
 
 export const loadCurrentWeatherFailed = createAction(
