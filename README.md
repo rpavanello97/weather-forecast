@@ -28,7 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ## To do
-part 7
+part 8
     Stopeed at 10:08
     check error ir home.effects. query is undefined
 

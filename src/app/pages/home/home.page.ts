@@ -17,14 +17,13 @@ import { LoaderComponent } from 'src/app/shared/components/loader/loader.compone
 export class HomePage implements OnInit {
 
   searchControl!: FormControl
-  text!: string
 
   cityWeather$!: Observable<CityWeather>
   loading$!: Observable<boolean>
   error$!: Observable<boolean>
 
   constructor(
-    private store: Store   
+    private store: Store
   ) { }
 
   ngOnInit(): void {
@@ -33,12 +32,12 @@ export class HomePage implements OnInit {
     this.cityWeather$ = this.store.pipe(select(fromHomeSelectors.selectCurrentWeather))
     this.loading$ = this.store.pipe(select(fromHomeSelectors.selectCurrentWeatherLoading))
     this.error$ = this.store.pipe(select(fromHomeSelectors.selectCurrentWeatherError))
-    
+
   }
 
   doSearch(): void {
-    const city = this.searchControl.value 
-    this.store.dispatch(fromHomeActions.loadCurrentWeather(city))
+    var query = this.searchControl.value
+    this.store.dispatch(fromHomeActions.loadCurrentWeather({ query }))
   }
 
 }
