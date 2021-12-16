@@ -29,8 +29,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## To do
 part 8
-    Stopeed at 10:08
-    check error ir home.effects. query is undefined
-
-        
+    Stopeed at 17:52
     
+    
+    change current-weather-component.html, see the video 
+        

@@ -4,10 +4,11 @@ import { FormControl, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import * as fromHomeActions from './state/home.actions';
-import * as fromHomeSelectors from './state/home.selectors'
+import * as fromHomeActions from '../../state/home.actions';
+import * as fromHomeSelectors from '../../state/home.selectors'
 import { CityWeather } from 'src/app/shared/models/weather.model';
 import { LoaderComponent } from 'src/app/shared/components/loader/loader.component';
+
 
 @Component({
   selector: 'app-home',
@@ -18,9 +19,9 @@ export class HomePage implements OnInit {
 
   searchControl!: FormControl
 
-  cityWeather$!: Observable<CityWeather>
-  loading$!: Observable<boolean>
-  error$!: Observable<boolean>
+  cityWeather$: Observable<CityWeather> = new Observable<CityWeather>();
+  loading$: Observable<boolean> = new Observable<boolean>();
+  error$: Observable<boolean> = new Observable<boolean>();
 
   constructor(
     private store: Store

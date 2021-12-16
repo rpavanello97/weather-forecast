@@ -17,8 +17,8 @@
     
     <dio-loader *ngIf="loading$ | async"></dio-loader>
 
-    <div *ngIf="!(loading$ | async) && !(error$ | async)">
-        {{ (cityWeather$ | async)?.city?.name }}
+    <div *ngIf="!(loading$ | async) && !(error$ | async) && !!(cityWeather$ | async)">
+        <app-current-weather [cityWeather]="cityWeather$ | async"></app-current-weather>        
     </div>
 
     <div *ngIf="!(loading$ | async) && (error$ | async)">
