@@ -3,8 +3,10 @@
 
         <h2> {{ cityName }}</h2>
 
+        <app-detailed-weather [weather]="cityWeather.weather"></app-detailed-weather>
+
         <div class="card-actions">
-            <a class="card-link">
+            <a class="card-link" (click)="onToggleBookmark()">
                 Add to bookmark
             </a>
             <a class="card-link" routerLink="/details">

@@ -28,9 +28,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ## To do
-part 8
-    Stopeed at 17:52
-    
-    
-    change current-weather-component.html, see the video 
+Start part 9 
+
+Changes to let better
+    pipe to ajust the weather description
+    chenge the html from detailed-weather
+          
+
+
         
