@@ -4,10 +4,10 @@
       <div>
         <h3>Favorites</h3>
   
-        <div *ngIf="!(bookmarks.length)">No favorites to show</div>
+        <div *ngIf="!(bookmarks$ | async).length">No favorites to show</div>
   
         <ul class="list-unstyled">
-          <li *ngFor="let bookmark of bookmarks">
+          <li *ngFor="let bookmark of bookmarks$ | async">
             <a >
               {{ bookmark.name }}
             </a>

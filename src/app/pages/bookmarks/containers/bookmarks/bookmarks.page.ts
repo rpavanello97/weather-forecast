@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { Bookmark } from 'src/app/shared/models/bookmark.model';
 import * as fromBookmarkSelector from './../../state/bookmark.selectors';
@@ -13,16 +14,19 @@ import * as fromBookmarlActions from './../../state/bookmarks.actions';
 })
 export class BookmarksPage implements OnInit {
 
-  bookmarks: Bookmark[]
+  // bookmarks: Bookmark[]
+  bookmarks$: Observable<Bookmark[]>
 
   constructor(
     private store: Store
   ) { }
 
   ngOnInit(): void {
-    this.store.pipe(select(fromBookmarkSelector.selectBookmarkState)).subscribe(data => {
-      this.bookmarks = data.list
-    })
+    // this.store.pipe(select(fromBookmarkSelector.selectBookmarkList)).subscribe(data => {
+    //   this.bookmarks = data
+    // })
+
+    this.bookmarks$ = this.store.pipe(select(fromBookmarkSelector.selectBookmarkList))
   }
 
   removeFromFavorites(id: number): void {

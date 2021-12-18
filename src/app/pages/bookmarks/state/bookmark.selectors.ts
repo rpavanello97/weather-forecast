@@ -6,5 +6,5 @@ export const selectBookmarkState = createFeatureSelector<BookmarkState>('bookmar
 
 export const selectBookmarkList = createSelector(
     selectBookmarkState,
-    (bookmarkState: BookmarkState) => bookmarkState
+    (bookmarkState: BookmarkState) => bookmarkState.list
 )
