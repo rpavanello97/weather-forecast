@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="bookmarks-container">
+  
+      <div>
+        <h3>Favorites</h3>
+  
+        <div *ngIf="!(bookmarks.length)">No favorites to show</div>
+  
+        <ul class="list-unstyled">
+          <li *ngFor="let bookmark of bookmarks">
+            <a >
+              {{ bookmark.name }}
+            </a>
+            <button class="btn btn-outline-dark btn-sm"
+                    (click)="removeFromFavorites(bookmark.id)">X</button>
+          </li>
+        </ul>
+  
+      </div>
+  
+      <div>
+        <label>Add city to favorites</label>
+      </div>
+  
+    </div>
+  </div>

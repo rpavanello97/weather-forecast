@@ -34,8 +34,7 @@ Start part 9
     to create bookmark view.
     create selector to get all bookmarks.
     create functionality to remove bookmark.
-    clear homepage when retorn from bookmark.
-
+    
 
 Changes to let better
     pipe to ajust the weather description

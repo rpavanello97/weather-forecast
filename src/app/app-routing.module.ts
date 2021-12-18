@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BookmarksPage } from './pages/bookmarks/bookmarks.page';
+import { BookmarksPage } from './pages/bookmarks/containers/bookmarks/bookmarks.page';
 import { HomePage } from './pages/home/containers/home/home.page';
 
 const routes: Routes = [
