@@ -31,6 +31,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 Start part 9 
     stopped at 4:45
 
+    to create bookmark view.
+    create selector to get all bookmarks.
+    create functionality to remove bookmark.
+    clear homepage when retorn from bookmark.
+
+
 Changes to let better
     pipe to ajust the weather description
     chenge the html from detailed-weather

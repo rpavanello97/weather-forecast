@@ -16,6 +16,10 @@ export const loadCurrentWeatherFailed = createAction(
     '[Home - Weather API] Load CUrrent Weather Failed',
 );
 
+export const clearHomeState = createAction(
+    '[Home] Clear Home',
+);
+
 export const toggleBookmark = createAction(
     '[Home] Toggle Bookmark',
     props<{ entity: Bookmark }>()

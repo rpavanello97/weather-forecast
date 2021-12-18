@@ -47,6 +47,7 @@ export class HomePage implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.componentDestroyed$.next();
     this.componentDestroyed$.unsubscribe();
+    this.store.dispatch(fromHomeActions.clearHomeState())
   }
 
   doSearch(): void {
