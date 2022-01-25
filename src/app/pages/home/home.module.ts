@@ -10,6 +10,7 @@ import { homeReducer } from './state/home.reducer';
 import { HomeEffects } from './state/home.effects';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { CurrentWeatherComponent } from './components/current-weather/current-weather.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -21,7 +22,8 @@ import { CurrentWeatherComponent } from './components/current-weather/current-we
   imports: [
     CommonModule,
     ReactiveFormsModule, 
-    ComponentsModule, 
+    ComponentsModule,
+    RouterModule, 
     StoreModule.forFeature('home', homeReducer),
     EffectsModule.forFeature([HomeEffects])
   ]

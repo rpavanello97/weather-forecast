@@ -7,7 +7,7 @@
 
         <div class="card-actions">
             <a class="card-link" (click)="onToggleBookmark()">
-                Add to bookmark
+                {{ isFavorite ? 'Remove from bookmarks' : 'Add to bookmarks' }}
             </a>
             <a class="card-link" routerLink="/details">
                 See details

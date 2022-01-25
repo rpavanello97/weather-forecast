@@ -28,12 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ## To do
-Start part 9 
-    stopped at 4:45
-
-    to create bookmark view.
-    create selector to get all bookmarks.
-    create functionality to remove bookmark.
+Start part 10
     
 
 Changes to let better

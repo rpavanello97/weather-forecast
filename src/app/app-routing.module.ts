@@ -9,6 +9,10 @@ const routes: Routes = [
   },
   {
     path: 'bookmarks', component: BookmarksPage
+  },
+  {
+    //This is a lazy loading. the route is done inside the module.
+    path: 'details', loadChildren: () => import('./pages/details/details.module').then(m => m.DetailsModule)
   }
 ];
 
