@@ -1,0 +1,8 @@
+<input [(ngModel)]="search"
+       typeaheadOptionField="name"
+       [typeahead]="dataSource$"
+       [typeaheadAsync]="true"
+       [typeaheadWaitMs]="400"       
+       (typeaheadOnSelect)="onSelected($event)"
+       class="form-control"
+       placeholder="Search">

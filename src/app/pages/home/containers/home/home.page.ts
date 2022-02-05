@@ -21,6 +21,7 @@ import * as fromBookmarksSelectors from '../../../bookmarks/state/bookmark.selec
 export class HomePage implements OnInit, OnDestroy {
 
   searchControl!: FormControl
+  searchControlWithAutoComplete: FormControl
 
   cityWeather$: Observable<CityWeather>;
   cityWeather: CityWeather;
@@ -38,6 +39,8 @@ export class HomePage implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.searchControl = new FormControl('', Validators.required)
+    this.searchControlWithAutoComplete = new FormControl(undefined)
+    this.searchControlWithAutoComplete.valueChanges.subscribe( value => console.log(value))
 
     this.cityWeather$ = this.store.pipe(select(fromHomeSelectors.selectCurrentWeather));
     this.cityWeather$
