@@ -28,7 +28,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ## To do
-Start part 10
+Start part 12
+Verify the fetch return
     
 
 Changes to let better
