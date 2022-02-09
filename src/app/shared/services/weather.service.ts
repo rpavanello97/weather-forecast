@@ -22,21 +22,31 @@ export class WeatherService {
     )
   }
 
+  getCityWeatherById(id: string): Observable<CityWeather> {
+    const params = new HttpParams({ fromObject: { id } });
+    return this.doGet<any>('weather', params)
+      .pipe(map(response => responseToCityWeather(response)));
+  }
+
   getCityWeatherByCoord(lat: number, lon: number): Observable<CityWeather> {
-    const params = new HttpParams({fromObject: {
-      lat: lat.toString(),
-      lon: lon.toString(),
-    }});
+    const params = new HttpParams({
+      fromObject: {
+        lat: lat.toString(),
+        lon: lon.toString(),
+      }
+    });
     return this.doGet<any>('weather', params)
       .pipe(map(response => responseToCityWeather(response)));
   }
 
   getWeatherDetails(lat: number, lon: number): Observable<CityDailyWeather> {
-    const params = new HttpParams({fromObject: {
-      lat: lat.toString(),
-      lon: lon.toString(),
-      exclude: 'minutely,hourly',
-    }});
+    const params = new HttpParams({
+      fromObject: {
+        lat: lat.toString(),
+        lon: lon.toString(),
+        exclude: 'minutely,hourly',
+      }
+    });
     return this.doGet<any>('onecall', params)
       .pipe(map(response => responseToCityDailyWeather(response)));
   }

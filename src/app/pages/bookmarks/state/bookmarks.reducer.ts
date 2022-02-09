@@ -1,8 +1,6 @@
-import { state } from "@angular/animations";
 import { createReducer, Action, on } from "@ngrx/store";
 
 import { Bookmark } from "../../../shared/models/bookmark.model"
-
 import * as fromHomeActions from "../../home/state/home.actions"
 import * as fromBookmarkActions from "../state/bookmarks.actions"
 
@@ -23,7 +21,11 @@ const reducer = createReducer(
     on(fromBookmarkActions.removeBookmark, (state, { id }) => ({
         ...state,
         list: state.list.filter(b => b.id !== id),
-    }))
+    })),
+    on(fromBookmarkActions.updateBookmarksList, (state, { list }) => ({
+        ...state,
+        list,
+    })),
 )
 
 export function bookmarkReducer(state: BookmarkState | undefined, action: Action) {

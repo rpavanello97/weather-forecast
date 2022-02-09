@@ -6,6 +6,10 @@ import { StoreModule } from '@ngrx/store';
 import { BookmarksPage } from './containers/bookmarks/bookmarks.page';
 import { bookmarkReducer} from './state/bookmarks.reducer'
 import { RouterModule } from '@angular/router';
+import { ComponentsModule } from 'src/app/shared/components/components.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
+import { BookmarksEffects } from './state/bookmark.effects';
 
 
 @NgModule({
@@ -14,8 +18,11 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule,
-    StoreModule.forFeature('bookmark', bookmarkReducer)
+    ComponentsModule,
+    StoreModule.forFeature('bookmark', bookmarkReducer),
+    EffectsModule.forFeature([BookmarksEffects]),
   ]
 })
 export class BookmarksModule { }
