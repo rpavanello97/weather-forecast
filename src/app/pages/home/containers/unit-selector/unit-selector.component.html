@@ -1,0 +1,14 @@
+<div>
+    <span>Unidade:</span>
+    <ul class="list-inline">
+      <li class="list-inline-item" (click)="updateUnit(unitsEnum.Metric)">
+        <a class="badge" [ngClass]="unit === unitsEnum.Metric ? 'alert-success' : 'badge-dark'">˚C</a>
+      </li>      
+      <li class="list-inline-item" (click)="updateUnit(unitsEnum.Imperial)">
+        <a class="badge" [ngClass]="(unit$ | async) === unitsEnum.Imperial ? 'alert-success' : 'badge-dark'">˚F</a>
+      </li>
+      <li class="list-inline-item" (click)="updateUnit(unitsEnum.SI)">
+        <a class="badge" [ngClass]="(unit$ | async) === unitsEnum.SI ? 'alert-success' : 'badge-dark'">K</a>
+      </li>
+    </ul>
+  </div>

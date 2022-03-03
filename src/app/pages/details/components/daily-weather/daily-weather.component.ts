@@ -3,6 +3,8 @@ import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
 import * as moment from 'moment-timezone';
 
 import { DailyWeather, Weather } from 'src/app/shared/models/weather.model';
+import { Units } from 'src/app/shared/models/units.enum';
+import { unitToSymbol } from 'src/app/shared/util/units.utils';
 
 @Component({
   selector: 'app-daily-weather',
@@ -14,9 +16,14 @@ export class DailyWeatherComponent {
 
   @Input() dailyWeather: DailyWeather;
   @Input() timeZone: string;
+  @Input() unit: Units;
 
   get weather(): Weather {
     return this.dailyWeather.weather;
+  }
+
+  get unitSymbol() {
+    return unitToSymbol(this.unit);
   }
 
   get date(): string {

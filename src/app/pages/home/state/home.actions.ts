@@ -18,7 +18,7 @@ export const loadCurrentWeatherSuccess = createAction(
 );
 
 export const loadCurrentWeatherFailed = createAction(
-    '[Home - Weather API] Load CUrrent Weather Failed',
+    '[Home - Weather API] Load Current Weather Failed',
 );
 
 export const clearHomeState = createAction(

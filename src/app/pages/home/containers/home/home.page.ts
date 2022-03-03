@@ -1,17 +1,21 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ApplicationRef, Component, ComponentFactoryResolver, Injector, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { ComponentPortal, DomPortalOutlet, PortalOutlet } from '@angular/cdk/portal';
 
 import { select, Store } from '@ngrx/store';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
-
 import { CityWeather } from 'src/app/shared/models/weather.model';
 import { Bookmark } from 'src/app/shared/models/bookmark.model';
+import { CityTypeaheadItem } from 'src/app/shared/models/city-typeahead-item.model';
+import { UnitSelectorComponent } from '../unit-selector/unit-selector.component';
+import { Units } from 'src/app/shared/models/units.enum';
+
 import * as fromHomeActions from '../../state/home.actions';
 import * as fromHomeSelectors from '../../state/home.selectors'
 import * as fromBookmarksSelectors from '../../../bookmarks/state/bookmark.selectors';
-import { CityTypeaheadItem } from 'src/app/shared/models/city-typeahead-item.model';
+import * as fromConfigSelectors from '../../../../shared/state/config/config.selectos';
 
 
 @Component({
@@ -22,7 +26,7 @@ import { CityTypeaheadItem } from 'src/app/shared/models/city-typeahead-item.mod
 export class HomePage implements OnInit, OnDestroy {
 
   searchControl!: FormControl
-  searchControlWithAutoComplete: FormControl
+  searchControlWithAutoComplete: FormControl  
 
   cityWeather$: Observable<CityWeather>;
   cityWeather: CityWeather;
@@ -32,30 +36,37 @@ export class HomePage implements OnInit, OnDestroy {
   bookmarksList$: Observable<Bookmark[]>;
   isCurrentFavorite$: Observable<boolean>;
 
+  unit$: Observable<Units>;
+
   private componentDestroyed$ = new Subject()
 
+  private portalOutlet: PortalOutlet;  
+
   constructor(
-    private store: Store
+    private store: Store,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private appRef: ApplicationRef,
+    private injector: Injector
   ) { }
 
   ngOnInit(): void {
     this.searchControl = new FormControl('', Validators.required)
     this.searchControlWithAutoComplete = new FormControl(undefined)
     this.searchControlWithAutoComplete.valueChanges
-    .pipe(takeUntil(this.componentDestroyed$))
-    .subscribe((value: CityTypeaheadItem) => {
-      if (!!value) {
-        this.store.dispatch(fromHomeActions.loadCurrentWeatherById({id: value.geonameid.toString()}));
-      }
-    })
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe((value: CityTypeaheadItem) => {
+        if (!!value) {
+          this.store.dispatch(fromHomeActions.loadCurrentWeatherById({ id: value.geonameid.toString() }));
+        }
+      })
 
-    
+
 
     this.cityWeather$ = this.store.pipe(select(fromHomeSelectors.selectCurrentWeather));
     this.cityWeather$
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(value => this.cityWeather = value);
-    
+
     //Another form to do the same thing above.
     // this.store.pipe(
     //   select(fromHomeSelectors.selectCurrentWeather),
@@ -66,7 +77,7 @@ export class HomePage implements OnInit, OnDestroy {
     this.error$ = this.store.pipe(select(fromHomeSelectors.selectCurrentWeatherError));
 
     this.bookmarksList$ = this.store.pipe(select(fromBookmarksSelectors.selectBookmarkList));
-    
+
     this.isCurrentFavorite$ = combineLatest([this.cityWeather$, this.bookmarksList$])
       .pipe(
         map(([current, bookmarkList]) => {
@@ -76,12 +87,17 @@ export class HomePage implements OnInit, OnDestroy {
           return false;
         }),
       );
+
+    this.unit$ = this.store.pipe(select(fromConfigSelectors.selectUnitConfig));
+
+    this.setupPortal();
   }
 
   ngOnDestroy(): void {
     this.componentDestroyed$.next();
     this.componentDestroyed$.unsubscribe();
-    this.store.dispatch(fromHomeActions.clearHomeState())
+    this.store.dispatch(fromHomeActions.clearHomeState());
+    this.portalOutlet.detach();
   }
 
   doSearch(): void {
@@ -99,4 +115,14 @@ export class HomePage implements OnInit, OnDestroy {
     this.store.dispatch(fromHomeActions.toggleBookmark({ entity: bookmark }));
   }
 
+  private setupPortal() {
+    const el = document.querySelector('#navbar-portal-outlet');
+    this.portalOutlet = new DomPortalOutlet(
+      el,
+      this.componentFactoryResolver,
+      this.appRef,
+      this.injector
+    );
+    this.portalOutlet.attach(new ComponentPortal(UnitSelectorComponent));
+  }
 }

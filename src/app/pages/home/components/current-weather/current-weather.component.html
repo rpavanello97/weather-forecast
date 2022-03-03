@@ -3,13 +3,16 @@
 
         <h2> {{ cityName }}</h2>
 
-        <app-detailed-weather [weather]="cityWeather.weather"></app-detailed-weather>
+        <app-detailed-weather [weather]="cityWeather.weather"
+                              [unit]="unit">></app-detailed-weather>
 
         <div class="card-actions">
             <a class="card-link" (click)="onToggleBookmark()">
                 {{ isFavorite ? 'Remove from bookmarks' : 'Add to bookmarks' }}
             </a>
-            <a class="card-link" routerLink="/details">
+            <a class="card-link" 
+               routerLink="/details"
+               [queryParams]="{ lat: cityWeather.city.coord.lat, lon: cityWeather.city.coord.lon }">
                 See details
             </a>
         </div>

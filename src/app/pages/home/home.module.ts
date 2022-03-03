@@ -11,6 +11,7 @@ import { HomeEffects } from './state/home.effects';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { CurrentWeatherComponent } from './components/current-weather/current-weather.component';
 import { RouterModule } from '@angular/router';
+import { UnitSelectorComponent } from './containers/unit-selector/unit-selector.component';
 
 
 
@@ -18,6 +19,7 @@ import { RouterModule } from '@angular/router';
   declarations: [
     HomePage,
     CurrentWeatherComponent,
+    UnitSelectorComponent,
   ],
   imports: [
     CommonModule,
