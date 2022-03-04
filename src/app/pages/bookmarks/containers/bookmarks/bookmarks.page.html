@@ -1,28 +1,41 @@
 <div class="container-fluid">
-    <div class="bookmarks-container">
-  
-      <div>
-        <h3>Favorites</h3>
-  
-        <div *ngIf="!(bookmarks$ | async).length">No favorites to show</div>
-  
-        <ul class="list-unstyled">
-          <li *ngFor="let bookmark of bookmarks$ | async">
+  <div class="bookmarks-container">
+
+    <div class="width-table">
+      <h3>Favorites</h3>     
+      
+      <table class="table" *ngIf="(bookmarks$ | async).length; else noFavorites">
+        <thead class="table-active">
+        <tr>
+          <th scope="col">City</th>
+          <th scope="col">Remove</th>
+        </tr>
+      </thead>
+        <tr *ngFor="let bookmark of bookmarks$ | async">
+          <th scope="row">
             <a [routerLink]="['../details']" 
-               [queryParams]="{lat: bookmark.coord.lat, lon: bookmark.coord.lon}">
-              {{ bookmark.name }}
-            </a>
+             [queryParams]="{lat: bookmark.coord.lat, lon: bookmark.coord.lon}"
+             class = "clean-text">
+            {{ bookmark.name }}
+          </a>
+          </th>
+          <th scope="row">
             <button class="btn btn-outline-dark btn-sm"
-                    (click)="removeFromFavorites(bookmark.id)">X</button>
-          </li>
-        </ul>
-  
-      </div>
-  
-      <div>
-        <label>Add city to favorites</label>
-        <app-cities-typeahead [formControl]="searchTypeaheadControl"></app-cities-typeahead>
-      </div>
-  
+                  (click)="removeFromFavorites(bookmark.id)">X</button>
+          </th>
+        </tr>
+      </table>
+
     </div>
+
+    <div>
+      <label>Add city to favorites</label>
+      <app-cities-typeahead [formControl]="searchTypeaheadControl"></app-cities-typeahead>
+    </div>
+
   </div>
+</div>
+
+<ng-template #noFavorites>
+  <div>No favorites to show</div>
+</ng-template>

@@ -1,10 +1,19 @@
 .container-fluid {
-    margin: 0;
-    padding: 32px 0 0;
-  
-    .bookmarks-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-column-gap: 16px;
-    }
+  margin: 0;
+  padding: 32px 0 0;
+
+  .bookmarks-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 16px;
   }
+}
+
+.clean-text {
+  margin-right: 25px;
+  text-decoration: none !important;
+}
+
+.width-table {
+  width: 80%;
+}
