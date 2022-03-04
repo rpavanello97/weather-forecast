@@ -6,7 +6,8 @@ It was used "NgRx" to store informations states, it is similar to "Redux".<br>
 
 <br>
 
-## Installation
+
+## Installation 💻
 
     1. Clone the repository `git clone git@github.com:rpavanello97/weather-forecast.git`
     2. Install all dependencies with `npm install` command
